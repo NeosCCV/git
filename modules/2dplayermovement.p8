@@ -30,7 +30,7 @@ end
 function movementvalues()
  xaccel=0.10 --the accel
  slip=0.90 --keep under 1; .9-.95 is kinda good
- maxaccel=0.90
+ maxaccel=0.90 --this is fine
 end
 function playermovement()
  movementvalues()
@@ -41,15 +41,12 @@ function playermovement()
  if dx<-maxaccel then
   dx=-maxaccel
  end
-
   if btn(0) then
     dx=dx-xaccel
   end
-
   if btn(1) then
     dx=dx+xaccel
   end
-
   if btnp(2) and
     (grounded) then
     grounded=false
@@ -62,31 +59,25 @@ function playermovement()
     jump+=1
     dy=dy-1.5
   end
-
   if hit(x+dx,y,7,7) then
     dx=0
   end
-
   if hit(x,y+dy,7,7) then
     if dy>0 then
       grounded=true
     end
     dy=0
   end
-
   if grounded then
     dx=dx*slip
     jump=0
   end
-
   y=y+dy
   x=x+dx
  end
-
 function _update()
  playermovement()
 end
-
 function _draw()
  cls()
  map(0,0,0,0,16,16)
@@ -96,7 +87,6 @@ function _draw()
  print("y accel",2,18,12)
  print(dy,32,18,12)
 end
-
 __gfx__
 0000000000cccc000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
 0000000000cccc000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
