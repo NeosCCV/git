@@ -226,68 +226,68 @@ end
 
 function flevel1()
  map(0,0,0,0,16,16)
- coinx={24,65,108,88,31,48}
- coiny={98,78,110,46,22,60}
- heartx=13
- hearty=63
+ coinx={3,8,13,11,4,6}
+ coiny={13,10,13,6,3,7}
+ heartx=2
+ hearty=8
  if coin1status==1 then
-  spr((coinframe[coinframetrg]),(coinx[1]),(coiny[1]))
-  if (flr((x+4)/8))==(flr((coinx[1])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[1])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[1])*8,(coiny[1])*8)
+  if (flr((x+4)/8))==(flr(coinx[1])) then
+   if (flr((y+4)/8))==(flr(coiny[1])) then
     coin1status=0
     score+=scorepercoin
    end
   end
  end
  if coin2status==1 then
-  spr((coinframe[coinframetrg]),(coinx[2]),(coiny[2]))
-  if (flr((x+4)/8))==(flr((coinx[2])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[2])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[2])*8,(coiny[2])*8)
+  if (flr((x+4)/8))==(flr(coinx[2])) then
+   if (flr((y+4)/8))==(flr(coiny[2])) then
     coin2status=0
     score+=scorepercoin
    end
   end
  end
  if coin3status==1 then
-  spr((coinframe[coinframetrg]),(coinx[3]),(coiny[3]))
-  if (flr((x+4)/8))==(flr((coinx[3])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[3])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[3])*8,(coiny[3])*8)
+  if (flr((x+4)/8))==(flr(coinx[3])) then
+   if (flr((y+4)/8))==(flr(coiny[3])) then
     coin3status=0
     score+=scorepercoin
    end
   end
  end
  if coin4status==1 then
-  spr((coinframe[coinframetrg]),(coinx[4]),(coiny[4]))
-  if (flr((x+4)/8))==(flr((coinx[4])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[4])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[4])*8,(coiny[4])*8)
+  if (flr((x+4)/8))==(flr(coinx[4])) then
+   if (flr((y+4)/8))==(flr(coiny[4])) then
     coin4status=0
     score+=scorepercoin
    end
   end
  end
  if coin5status==1 then
-  spr((coinframe[coinframetrg]),(coinx[5]),(coiny[5]))
-  if (flr((x+4)/8))==(flr((coinx[5])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[5])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[5])*8,(coiny[5])*8)
+  if (flr((x+4)/8))==(flr(coinx[5])) then
+   if (flr((y+4)/8))==(flr(coiny[5])) then
     coin5status=0
     score+=scorepercoin
    end
   end
  end
  if coin6status==1 then
-  spr((coinframe[coinframetrg]),(coinx[6]),(coiny[6]))
-  if (flr((x+4)/8))==(flr((coinx[6])/8)) then
-   if (flr((y+4)/8))==(flr((coiny[6])/8)) then
+  spr((coinframe[coinframetrg]),(coinx[6])*8,(coiny[6])*8)
+  if (flr((x+4)/8))==(flr(coinx[6])) then
+   if (flr((y+4)/8))==(flr(coiny[6])) then
     coin6status=0
     score+=scorepercoin
    end
   end
  end
  if heartstatus==1 then
-   spr((heartframe[heartframetrg]),(heartx),(hearty))
-   if (flr((x+4)/8))==(flr(heartx/8)) then
-    if (flr((y+4)/8))==(flr(hearty/8)) then
+   spr((heartframe[heartframetrg]),(heartx)*8,(hearty)*8)
+   if (flr((x+4)/8))==(flr(heartx)) then
+    if (flr((y+4)/8))==(flr(hearty)) then
      heartstatus=0
      score+=scoreperheart
      lives+=livesperheart
