@@ -17,6 +17,7 @@ function _init()
  score=0
  lives=3
  coins=0
+ heartendy=50
  ------------------------
  levelxhitvalue=0
  levelyhitvalue=0
@@ -41,6 +42,9 @@ function _init()
  level2trg=1
 end
 
+function reset()
+ _init()
+end
 function fselectplayer() --this is the player selector, shoud be called in the draw section
 	cls()
 	spr(1,30,40)
@@ -252,6 +256,8 @@ function animations()
  if(heart.step%3==0) heartframetrg+=1
  if(heartframetrg>6) heartframetrg=1
 end
+function fmnendgame()
+end
 function level1status()
  if level1trg==1 then
   levelxhitvalue=0
@@ -292,11 +298,22 @@ end
 function death()
  if lives==0 then
   game=0
-  endgame=0
+  endgame=1
   endduedeath=1
  end
 end
-
+function badend()
+ print ("you died!",46,40,12)
+ spr(player,58,50)
+ spr((heartframe[heartframetrg]),60,heartendy)
+ heartendy-=1
+ spr(48,56,62)
+ print(coins,65,63,12)
+ print("z to restart",40,100,12)
+ if btnp(4) then
+  reset()
+ end
+end
 
 function flevel1()
  map(0,0,0,0,16,16)
@@ -368,11 +385,14 @@ function flevel1()
     end
    end
   end
--- level 1 to level 2 --
- if (flr((x+4)/8))==-1 then
-  if (flr((y+4)/8))==8 then
-   level1=0
-   level2=1
+ if flr(x)>-1 then
+  if flr(x)<8 then
+   if flr(y)>55 then
+    if flr(y)<65 then
+     level1=0-- level 1 to level 2 --
+     level2=1
+    end
+   end
   end
  end
 end
@@ -388,13 +408,13 @@ end
 
 
 function _update()
+ animations()
  if game==1 then
   playermovement()
   timer+=1
   if timer>180 then
    timer=0
   end
-  animations()
  end
 end
 
