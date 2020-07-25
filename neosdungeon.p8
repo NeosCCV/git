@@ -302,13 +302,12 @@ function flives()
  for i=1, lives do
   spr(55,80+i*9,2)
  end
+end
 function fcoins()
  coinspercoin=1
  spr(48,11,9)
  print(coins,20,10,2)
 end
-
-end --why is this neccessary
 function death()
  if lives==0 then
   game=0
@@ -328,6 +327,8 @@ function badend()
   reset()
  end
 end
+
+---------------------------------------------
 
 function flevel1()
  map(0,0,0,0,16,16)
