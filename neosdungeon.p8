@@ -268,6 +268,7 @@ function animations()
 end
 function fmnendgame()
 end
+---------------------------------------------
 function level1status()
  if level1trg==1 then
   levelxhitvalue=0
@@ -297,9 +298,23 @@ function level2status()
   y=56
   dx=0
   dy=0
+  coin1status=1
+  coin2status=1
+  coin3status=1
+  coin4status=1
+  coin5status=1
+  heartstatus=1
   level2trg=0
  end
 end
+function level2bg()
+ spr((torchframe[torchframetrg]),20,20)
+ spr((torchframe[torchframetrg]),105,12)
+ spr((torchframe[torchframetrg]),50,51)
+ spr((torchframe[torchframetrg]),95,60)
+
+end
+---------------------------------------------
 function flives()
  livesperheart=1
  for i=1, lives do
@@ -311,6 +326,7 @@ function fcoins()
  spr(48,8,0)
  print(coins,18,1,9)
 end
+---------------------------------------------
 function death()
  if lives==0 then
   game=0
@@ -328,6 +344,8 @@ function doshake()
  if (shake<0.05) shake=0
 end
 
+---------------------------------------------
+
 function badend()
  print ("you died!",46,40,12)
  spr(player,58,50)
@@ -335,9 +353,24 @@ function badend()
  heartendy-=1
  spr(48,56,62)
  print(coins,65,63,12)
- print("z to restart",40,100,12)
+ print("z+x to restart",40,100,12)
  if btnp(4) then
+  if btnp(5) then
   reset()
+  end
+ end
+end
+function goodend()
+ print ("you won!",46,40,12)
+ spr(player,58,50)
+ spr((heartframe[heartframetrg]),60,52)
+ spr(48,56,62)
+ print(coins,65,63,12)
+ print("z+x to play again",40,100,12)
+ if btnp(4) then
+  if btnp(5) then
+  reset()
+  end
  end
 end
 
@@ -415,27 +448,81 @@ function flevel1()
     end
    end
   end
- if flr(x)>-1 then
-  if flr(x)<8 then
-   if flr(y)>55 then
-    if flr(y)<65 then
-     level1=0-- level 1 to level 2 --
-     level2=1
+  if flr(x)>-1 then
+   if flr(x)<8 then
+    if flr(y)>55 then
+     if flr(y)<65 then
+      level1=0-- level 1 to level 2 --
+      level2=1
+     end
     end
    end
   end
  end
-end
-
+---------------------------
 function flevel2()
+ coinx={5,9,10,2}
+ coiny={3,4,7,4}
+ heartx=2
+ hearty=8
  map(16,0,0,0,16,16)
  level2status()
-end
-
+ level2bg()
+ if coin1status==1 then
+  spr((coinframe[coinframetrg]),(coinx[1])*8,(coiny[1])*8)
+  if (flr((x+4)/8))==(flr(coinx[1])) then
+   if (flr((y+4)/8))==(flr(coiny[1])) then
+    coin1status=0
+    coins+=coinspercoin
+   end
+  end
+ end
+ if coin2status==1 then
+  spr((coinframe[coinframetrg]),(coinx[2])*8,(coiny[2])*8)
+  if (flr((x+4)/8))==(flr(coinx[2])) then
+   if (flr((y+4)/8))==(flr(coiny[2])) then
+    coin2status=0
+    coins+=coinspercoin
+   end
+  end
+ end
+ if coin3status==1 then
+  spr((coinframe[coinframetrg]),(coinx[3])*8,(coiny[3])*8)
+  if (flr((x+4)/8))==(flr(coinx[3])) then
+   if (flr((y+4)/8))==(flr(coiny[3])) then
+    coin3status=0
+    coins+=coinspercoin
+   end
+  end
+ end
+ if coin4status==1 then
+  spr((coinframe[coinframetrg]),(coinx[4])*8,(coiny[4])*8)
+  if (flr((x+4)/8))==(flr(coinx[4])) then
+   if (flr((y+4)/8))==(flr(coiny[4])) then
+    coin4status=0
+    coins+=coinspercoin
+   end
+  end
+ end
+  if flr(x)>55 then
+   if flr(x)<65 then
+    if flr(y)>-8 then
+     if flr(y)<0 then
+      level2=0-- level 1 to level 2 --
+      game=0
+      endgame=1
+      endduewin=1
+     end
+    end
+   end
+  end
+ end
+-----------------------
 function fendgame()
-
 end
 
+---------------------------------------------
+---------------------------------------------
 
 function _update()
  animations()
@@ -447,6 +534,8 @@ function _update()
   end
  end
 end
+
+---------------------------------------------
 
 function _draw()
  doshake()
