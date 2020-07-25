@@ -24,6 +24,9 @@ function _init()
  levelxhitvalue=0
  levelyhitvalue=0
  ------------------------
+ endduedeath=0
+ endduewin=0
+ ------------------------
  selectplayer=1
  game=0
  level1=0
